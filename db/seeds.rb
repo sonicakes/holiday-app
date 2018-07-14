@@ -11,8 +11,8 @@ Photo.destroy_all
 Holiday.destroy_all
 User.destroy_all
 
-user1 = User.create :email => "bob@example.com"
-user2 = User.create :email => "alice@example.com"
+user1 = User.create :email => "bob@example.com", :name => "Bob Smith"
+user2 = User.create :email => "alice@example.com", :name => "Alice Green"
 
 holiday1 = Holiday.create :user_id => 1, :title => "Japan"
 holiday2 = Holiday.create :user_id => 1, :title => "Tasmania"
