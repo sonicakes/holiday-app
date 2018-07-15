@@ -1,4 +1,30 @@
 <h1><%= @holiday.title %></h1>
+
+<%= form_for Photo.new do |f| %>
+  <%= f.label :image_url %>
+  <%= f.url_field :image_url, :autofocus => true %>
+
+  <!-- This will be used to create the first comment on the phot -->
+  <!-- The "message" field does not exist in the Photo model, it -->
+  <!-- only exists in the Comment model. After we save the new -->
+  <!-- Photo in the PhotosController (create action) we then  -->
+  <!-- need to create a Comment, assign it the photo_id of the  -->
+  <!-- photo we just created and save it with the message below. -->
+  <label>Message</label>
+  <textarea name="message"></textarea>
+
+  <!-- TODO Use current logged in user -->
+  <%= f.hidden_field :user_id, :value => 1 %>
+  <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
+  <!-- creating a Photo, we have to specify which holiday it will  -->
+  <!-- belong to. Because we are already on the 'show' page for the -->
+  <!-- holiday, we know that the holiday_id should be the ID of the -->
+  <!-- holiday that we are currently looking at. -->
+  <%= f.hidden_field :holiday_id, :value => @holiday.id %>
+
+  <%= f.submit "Add Photo"%>
+<% end %>
+
 <% @holiday.photos.each do |photo| %>
   <img src="<%= photo.image_url %>" alt="">
   <% photo.comments.each do |comment| %>

@@ -17,8 +17,8 @@ class HolidaysController < ApplicationController
 
   def update
     holiday = Holiday.find params[:id]
-holiday.update holiday_params
-redirect_to holiday
+    holiday.update holiday_params
+    redirect_to holiday
   end
 
   def delete

@@ -1,0 +1,8 @@
+<h1><%= @photo.image_url %></h1>
+
+
+  <img src="<%= @photo.image_url %>" alt="">
+  <% @photo.comments.each do |comment| %>
+    <b><%= comment.user.name %></b> says:
+    <%= comment.message %><br>
+  <% end %>
