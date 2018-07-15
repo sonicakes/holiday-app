@@ -1,5 +1,6 @@
 class HolidaysController < ApplicationController
   def index
+    @holidays = Holiday.all.order(:created_at)
   end
 
   def new

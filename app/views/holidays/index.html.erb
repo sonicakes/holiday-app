@@ -1,2 +1,14 @@
-<h1>Holidays#index</h1>
-<p>Find me in app/views/holidays/index.html.erb</p>
+<h1>All Holidays</h1>
+
+<% @holidays.each do |holiday| %>
+  <ul>
+    <li><%= holiday.title %></li>
+    <li><%= holiday.user_id %></li>
+    <li><%= holiday.user.name %></li>
+    <li>
+      <img src="<%= holiday.photos.first.image_url %>" alt="first photo of the holiday">
+    </li>
+
+    <li>created at <%= holiday.created_at %></li>
+  </ul>
+<% end %>

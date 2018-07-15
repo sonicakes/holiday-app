@@ -11,19 +11,20 @@ Photo.destroy_all
 Holiday.destroy_all
 User.destroy_all
 
-user1 = User.create :email => "bob@example.com", :name => "Bob Smith"
-user2 = User.create :email => "alice@example.com", :name => "Alice Green"
+user1 = User.create :email => "bob@example.com", :name => "Bob Smith", :password => "bob12345"
+user2 = User.create :email => "alice@example.com", :name => "Alice Green", :password => "alice12345"
 
 holiday1 = Holiday.create :user_id => 1, :title => "Japan"
 holiday2 = Holiday.create :user_id => 1, :title => "Tasmania"
 holiday3 = Holiday.create :user_id => 2, :title => "Europe"
+holiday3 = Holiday.create :user_id => 2, :title => "America" # Seeding a holiday with no photos or comments
 
-photo1 = Photo.create :user_id => 1, :holiday_id => 1, :image_url => "" # Bob, Japan, Osaka Castle
+photo1 = Photo.create :user_id => 1, :holiday_id => 1, :image_url => "https://i2.wp.com/outoftownblog.com/wp-content/uploads/2018/03/Osaka-Castle.jpg?fit=1200%2C673&ssl=1" # Bob, Japan, Osaka Castle
 photo2 = Photo.create :user_id => 1, :holiday_id => 1, :image_url => "https://cdn.cheapoguides.com/wp-content/uploads/sites/2/2015/12/comiket-1102-770x513.jpg" # Bob, Japan
-photo3 = Photo.create :user_id => 1, :holiday_id => 2, :image_url => "" # Bob, Tasmania, Mt Welligton, Hobart
-photo4 = Photo.create :user_id => 2, :holiday_id => 2, :image_url => "" # Alice, Tasmania, Launceston
-photo5 = Photo.create :user_id => 2, :holiday_id => 3, :image_url => "" # Alice, Europe, Berlin, Germany
-photo6 = Photo.create :user_id => 1, :holiday_id => 3, :image_url => "" # Bob, Europe, Kyoto Castle
+photo3 = Photo.create :user_id => 1, :holiday_id => 2, :image_url => "https://upload.wikimedia.org/wikipedia/commons/1/18/Mount_Wellington.jpg" # Bob, Tasmania, Mt Welligton, Hobart
+photo4 = Photo.create :user_id => 2, :holiday_id => 2, :image_url => "http://www.pacificaluminium.com.au/uploads/gallery/2012/07/12/wtlarzqk944eGwyV9YNv-med.jpg" # Alice, Tasmania, Launceston
+photo5 = Photo.create :user_id => 2, :holiday_id => 3, :image_url => "https://media-cdn.tripadvisor.com/media/photo-s/0d/f5/7c/3b/shore-excursion-best.jpg" # Alice, Europe, Berlin, Germany
+photo6 = Photo.create :user_id => 1, :holiday_id => 3, :image_url => "https://s21041.pcdn.co/wp-content/uploads/2018/01/Madrid.jpg" # Bob, Europe, Madrid, Spain
 
 # These are comments that are created by the same person who uploaded the photo
 comment1 = Comment.create :user_id => 1, :photo_id => 1, :message => "Osaka Castle"
