@@ -1,0 +1,9 @@
+<h1><%= @holiday.title %></h1>
+<% @holiday.photos.each do |photo| %>
+  <img src="<%= photo.image_url %>" alt="">
+  <% photo.comments.each do |comment| %>
+    <b><%= comment.user.name %></b> says:
+    <%= comment.message %><br>
+  <% end %>
+<% end %>
+<!-- <ul>

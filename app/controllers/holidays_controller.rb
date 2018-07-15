@@ -6,6 +6,9 @@ class HolidaysController < ApplicationController
   def new
   end
 
+  def show
+      @holiday = Holiday.find params[:id]
+  end
   def create
   end
 
