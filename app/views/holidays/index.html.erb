@@ -5,10 +5,14 @@
     <li><%= holiday.title %></li>
     <li><%= holiday.user_id %></li>
     <li><%= holiday.user.name %></li>
-    <li>
-      <img src="<%= holiday.photos.first.image_url %>" alt="first photo of the holiday">
+    <% if holiday.photos.first.present? %>
+      <li>
+        <img src="<%= holiday.photos.first.image_url %>" alt="first photo of the holiday">
+      <% else %>
+        "photos not uploaded"
+      <% end %>
     </li>
-
-    <li>created at <%= holiday.created_at %></li>
+    <li>created at
+      <%= holiday.created_at %></li>
   </ul>
 <% end %>
