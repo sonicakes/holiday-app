@@ -10,8 +10,10 @@
   </head>
 
   <body>
-    <ul>
-</ul>
+    <nav>
+      <%= link_to 'All Holidays', holidays_path %>
+      <%= link_to 'New Holiday', new_holiday_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>
