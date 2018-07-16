@@ -1,18 +1,24 @@
-<h1>All Holidays</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>All Holidays</h1>
+    </div>
 
-<% @holidays.each do |holiday| %>
-  <ul>
-    <li><%= link_to holiday.title, holiday %></li>
-    <li><%= holiday.user.name %></li>
-        <li>
-    <% if holiday.photos.first.present? %>
-
-        <img src="<%= holiday.photos.first.image_url %>" alt="first photo of the holiday">
-      <% else %>
-        "photos not uploaded"
+      <% @holidays.each do |holiday| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <% if holiday.photos.first.present? %>
+            <a href="<%= url_for holiday %>"><img src="<%= holiday.photos.first.image_url %>" class="img-thumbnail img-fluid" alt="<%=holiday.title %>"></a>
+          <% else %>
+            No photos uploaded.
+          <% end %>
+          <p class="h4"><%= link_to holiday.title, holiday %></p>
+          <p>
+            Created by <i><%= holiday.user.name %></i>
+            at <i><%= holiday.created_at %></i>.
+          </p>
+        </div>
       <% end %>
-    </li>
-    <li>created at
-      <%= holiday.created_at %></li>
-  </ul>
-<% end %>
+
+    </div>
+  </div>
+</div>

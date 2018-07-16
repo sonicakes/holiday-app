@@ -1,27 +1,50 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>HolidayApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'All Holidays', holidays_path %>
-      <%= link_to 'New Holiday', new_holiday_path %>
-      <%= link_to 'Home', root_path %>
-  <% if @current_user.present? %>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <%= link_to "Sign out #{ @current_user.name }", login_path, :method => 'delete' %>
-  <% else %>
-    <%= link_to 'Sign up', new_user_path %>
-    <%= link_to 'Sign in', login_path %>
-  <% end %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'All Holidays', holidays_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'New Holiday', new_holiday_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <% if @current_user.present? %>
+            <li class="nav-item">
+              <%= link_to "Sign out #{ @current_user.name }", login_path, :method => 'delete', class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sign up', new_user_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Login', login_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
     <%= yield %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
   </body>
 </html>
