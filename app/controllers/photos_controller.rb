@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+    before_action :authorize
   def index
   end
 
@@ -7,6 +8,7 @@ class PhotosController < ApplicationController
   end
 
   def new
+      @photo = Photo.new
   end
 
   def create
@@ -16,7 +18,7 @@ class PhotosController < ApplicationController
     # Second we create a comment with saved photo
     comment = Comment.new
     # TODO Change this to the logged in user
-    comment.user_id = photo.user_id
+    comment.user_id = current_user.id
     comment.message = params[:message]
     comment.photo_id = photo.id
     comment.save
@@ -28,6 +30,9 @@ class PhotosController < ApplicationController
   end
 
   def update
+    photo = Photo.find params[:id]
+    photo.update photo_params
+    redirect_to photo
   end
 
   def delete

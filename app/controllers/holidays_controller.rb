@@ -1,4 +1,5 @@
 class HolidaysController < ApplicationController
+    before_action :authorize
   def index
     @holidays = Holiday.all.order(:created_at)
   end
@@ -26,6 +27,7 @@ class HolidaysController < ApplicationController
 
   def create
     holiday = Holiday.create holiday_params
+    current_user.holidays << holiday
     redirect_to holiday # GET the show page
   end
 

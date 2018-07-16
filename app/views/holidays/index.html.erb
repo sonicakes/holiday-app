@@ -3,7 +3,6 @@
 <% @holidays.each do |holiday| %>
   <ul>
     <li><%= link_to holiday.title, holiday %></li>
-    <li><%= holiday.user_id %></li>
     <li><%= holiday.user.name %></li>
         <li>
     <% if holiday.photos.first.present? %>

@@ -14,7 +14,7 @@
   <textarea name="message"></textarea>
 
   <!-- TODO Use current logged in user -->
-  <%= f.hidden_field :user_id, :value => 1 %>
+  
   <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
   <!-- creating a Photo, we have to specify which holiday it will  -->
   <!-- belong to. Because we are already on the 'show' page for the -->
@@ -31,5 +31,14 @@
     <b><%= comment.user.name %></b> says:
     <%= comment.message %><br>
   <% end %>
+
+  <%= form_for Comment.new do |f| %>
+    <%= f.label :message %>
+    <%= f.text_field :message, :autofocus => true %>
+
+    <%= f.hidden_field :holiday_id, :value => @holiday.id %>
+    <%= f.hidden_field :photo_id, :value => photo.id %>
+    <%= f.submit "New Comment"%>
+  <% end %>
+
 <% end %>
-<!-- <ul>
