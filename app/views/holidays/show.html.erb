@@ -1,5 +1,8 @@
 <h1><%= @holiday.title %></h1>
-
+<div class="controls">
+  <%= link_to "Edit Holiday", edit_holiday_path(@holiday) %>
+  <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' } %>
+</div>
 <%= form_for Photo.new do |f| %>
   <%= f.label :image_url %>
   <%= f.url_field :image_url, :autofocus => true %>
@@ -14,7 +17,7 @@
   <textarea name="message"></textarea>
 
   <!-- TODO Use current logged in user -->
-  
+
   <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
   <!-- creating a Photo, we have to specify which holiday it will  -->
   <!-- belong to. Because we are already on the 'show' page for the -->

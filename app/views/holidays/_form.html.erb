@@ -3,7 +3,7 @@
   <%= f.text_field :title, :autofocus => true %>
 
   <!-- TODO Use current logged in user -->
-  <%= f.hidden_field :user_id, :value => 1 %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <%= f.submit %>
 <% end %>

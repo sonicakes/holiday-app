@@ -14,7 +14,7 @@ end
     # we create a comment with saved photo
     comment = Comment.new
     # TODO Change this to the logged in user
-    comment.user_id = User.first.id # TODO: @current_user.id
+    comment.user_id = @current_user.id
     comment.message = params[:comment][:message]
     comment.photo_id = params[:comment][:photo_id]
     comment.save

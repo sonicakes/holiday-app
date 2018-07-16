@@ -14,7 +14,6 @@ class PhotosController < ApplicationController
   def create
     # First we save the new Photo
     photo = Photo.create photo_params
-
     # Second we create a comment with saved photo
     comment = Comment.new
     # TODO Change this to the logged in user
@@ -23,7 +22,7 @@ class PhotosController < ApplicationController
     comment.photo_id = photo.id
     comment.save
 
-    redirect_to photo # GET the show page
+    redirect_to photo
   end
 
   def edit

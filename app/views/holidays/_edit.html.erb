@@ -1,0 +1,7 @@
+<%= form_for @holiday do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title, :autofocus => true %>
+<%= f.label(:user_id, "Created by") %>
+<%= f.text_field :user_id%> <%# TODO: make this display user name %>
+  <%= f.submit "Update"%>
+<% end %>
