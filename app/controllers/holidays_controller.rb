@@ -22,8 +22,6 @@ class HolidaysController < ApplicationController
     redirect_to holiday
   end
 
-
-
   def create
     holiday = Holiday.create holiday_params
     current_user.holidays << holiday
@@ -35,7 +33,8 @@ class HolidaysController < ApplicationController
     holiday.destroy
     redirect_to holidays_path
   end
-  # Strong params: create a whitelist of permitted parameters
+
+# Strong params: create a whitelist of permitted parameters
 private
 def holiday_params
   params.require(:holiday).permit(:title, :user_id)

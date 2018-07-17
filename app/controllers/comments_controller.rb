@@ -13,14 +13,12 @@ end
 
     # we create a comment with saved photo
     comment = Comment.new
-    # TODO Change this to the logged in user
     comment.user_id = @current_user.id
     comment.message = params[:comment][:message]
     comment.photo_id = params[:comment][:photo_id]
     comment.save
 
     redirect_back :fallback_location => root_path # GET the show page
-    #comment doesnt seem to save, or how to redirect to showpage for holidays with all the other comments and pics?????
   end
 
   def edit
@@ -34,6 +32,10 @@ end
 
 
   def destroy
+    comment = Comment.find params[:id]
+    holiday = comment.photo.holiday
+    comment.destroy
+    redirect_to holiday
   end
 
   private

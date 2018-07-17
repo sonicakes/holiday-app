@@ -1,85 +1,77 @@
+<%= form_for Photo.new do |f| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <h1><%= @holiday.title %></h1>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-12 mx-auto">
+          Created by <i><%= @holiday.user.name %></i>
+          on <i><%= @holiday.created_at.strftime("%Y-%m-%d") %></i>,
+          at <i><%= @holiday.created_at.strftime("%I:%M%p") %></i>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-12 p-2 mx-auto">
+        <%= link_to "Go Back", holidays_path, class: 'btn btn-info' %>
+        <% if @holiday.user.id == @current_user.id %>
+          <%= link_to "Edit Holiday", edit_holiday_path(@holiday), class: "btn btn-warning"  %>
+          <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"  %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row border mb-2">
+      <div class="col-12 col-lg-6 mx-auto">
+        <%= f.label :image_url %>
+        <%= f.url_field :image_url, :autofocus => true, class: "form-control" %>
+      </div>
+      <div class="col-12 col-lg-6">
+          <!-- This will be used to create the first comment on the photo -->
+          <!-- The "message" field does not exist in the Photo model, it -->
+          <!-- only exists in the Comment model. After we save the new -->
+          <!-- Photo in the PhotosController (create action) we then  -->
+          <!-- need to create a Comment, assign it the photo_id of the  -->
+          <!-- photo we just created and save it with the message below. -->
+          <label>Message</label>
+          <textarea class="form-control "name="message"></textarea>
+      </div>
+      <div class="col-12 py-2 mx-auto">
+        <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
+        <!-- creating a Photo, we have to specify which holiday it will  -->
+        <!-- belong to. Because we are already on the 'show' page for the -->
+        <!-- holiday, we know that the holiday_id should be the ID of the -->
+        <!-- holiday that we are currently looking at. -->
+        <%= f.hidden_field :holiday_id, :value => @holiday.id %>
+        <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-6 mx-auto">
-<h1><%= @holiday.title %></h1>
-</div>
-</div>
-<div class="row">
-  <div class="col-12 p-2 col-md-6 mx-auto">
-  <%= link_to "Edit Holiday", edit_holiday_path(@holiday), class: "btn btn-warning"  %>
-  <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"  %>
-</div>
-</div>
-<div class="board border">
-
-
-<div class="row">
-  <div class="col-12 p-2 col-md-6 mx-auto">
-<%= form_for Photo.new,:html => {:class => "form-inline"} do |f| %>
-  <%= f.label :image_url %>
-  <%= f.url_field :image_url, :autofocus => true %>
-
-  <!-- This will be used to create the first comment on the phot -->
-  <!-- The "message" field does not exist in the Photo model, it -->
-  <!-- only exists in the Comment model. After we save the new -->
-  <!-- Photo in the PhotosController (create action) we then  -->
-  <!-- need to create a Comment, assign it the photo_id of the  -->
-  <!-- photo we just created and save it with the message below. -->
-
-  <label>Message</label>
-  <textarea class="form-control "name="message"></textarea>
-</div>
-</div>
-
-  <!-- TODO Use current logged in user -->
-
-  <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
-  <!-- creating a Photo, we have to specify which holiday it will  -->
-  <!-- belong to. Because we are already on the 'show' page for the -->
-  <!-- holiday, we know that the holiday_id should be the ID of the -->
-  <!-- holiday that we are currently looking at. -->
-  <%= f.hidden_field :holiday_id, :value => @holiday.id %>
-  <div class="row">
-    <div class="col-12 col-md-6 mx-auto">
-  <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
-<% end %>
-</div>
-</div>
-</div>
-
-<% @holiday.photos.each do |photo| %>
-<div class="row">
-  <div class="col-12 col-md-6 mx-auto">
-<div class="card" style="width: 30rem;">
-
-
-  <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
-  <% photo.comments.each do |comment| %>
-  <div class="card-body">
-    <h5 class="card-title">    <b><%= comment.user.name %></b> says:</h5>
-    <p class="card-text">    <%= comment.message %><br></p>
-
-    <%= form_for Comment.new do |f| %>
-      <%= f.label :message, "New Comment" %>
-      <%= f.text_field :message, :autofocus => true %>
-
-      <%= f.hidden_field :holiday_id, :value => @holiday.id %>
-      <%= f.hidden_field :photo_id, :value => photo.id %>
-      <%= f.submit "Add"%>
+    <% @holiday.photos.each do |photo| %>
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card">
+          <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
+            <div class="card-body">
+              <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+              <% photo.comments.each do |comment| %>
+                <h5 class="card-title"><b><%= comment.user.name %></b> says:</h5>
+                <p class="card-text"><%= comment.message %></p>
+                <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
+              <% end %>
+              <%= form_for Comment.new do |f| %>
+                <%= f.label :message, "New Comment" %>
+                <%= f.text_field :message, :autofocus => true, class: "form-control" %>
+                <%= f.hidden_field :holiday_id, :value => @holiday.id %>
+                <%= f.hidden_field :photo_id, :value => photo.id %>
+                <button type="submit" class="my-2 btn btn-block btn-info">Add Comment</button>
+              <% end %>
+            </div>
+        </div>
+      </div>
     <% end %>
   </div>
-
 </div>
-</div>
-</div>
-    <% end %>
-
-
-
-
-
-
-
-<%= link_to "Go Back", url_for(:back), class: 'btn btn-info' %>
-</div>
-<% end %>
