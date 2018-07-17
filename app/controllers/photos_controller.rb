@@ -34,8 +34,7 @@ class PhotosController < ApplicationController
     redirect_to photo
   end
 
-  def delete
-  end
+
 
   def destroy
   end

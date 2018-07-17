@@ -32,8 +32,6 @@ end
     redirect_to comment
   end
 
-  def delete
-  end
 
   def destroy
   end

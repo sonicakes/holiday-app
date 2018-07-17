@@ -1,9 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
 <h1><%= @holiday.title %></h1>
-<div class="controls">
-  <%= link_to "Edit Holiday", edit_holiday_path(@holiday) %>
-  <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' } %>
 </div>
-<%= form_for Photo.new do |f| %>
+</div>
+<div class="row">
+  <div class="col-12 p-2 col-md-6 mx-auto">
+  <%= link_to "Edit Holiday", edit_holiday_path(@holiday), class: "btn btn-warning"  %>
+  <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"  %>
+</div>
+</div>
+<div class="board border">
+
+
+<div class="row">
+  <div class="col-12 p-2 col-md-6 mx-auto">
+<%= form_for Photo.new,:html => {:class => "form-inline"} do |f| %>
   <%= f.label :image_url %>
   <%= f.url_field :image_url, :autofocus => true %>
 
@@ -13,8 +25,11 @@
   <!-- Photo in the PhotosController (create action) we then  -->
   <!-- need to create a Comment, assign it the photo_id of the  -->
   <!-- photo we just created and save it with the message below. -->
+
   <label>Message</label>
-  <textarea name="message"></textarea>
+  <textarea class="form-control "name="message"></textarea>
+</div>
+</div>
 
   <!-- TODO Use current logged in user -->
 
@@ -24,16 +39,28 @@
   <!-- holiday, we know that the holiday_id should be the ID of the -->
   <!-- holiday that we are currently looking at. -->
   <%= f.hidden_field :holiday_id, :value => @holiday.id %>
-
-  <%= f.submit "Add Photo"%>
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
+  <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
 <% end %>
+</div>
+</div>
+</div>
+
 
 <% @holiday.photos.each do |photo| %>
-  <img src="<%= photo.image_url %>" alt="photo of the holiday" class="img-fluid img-thumbnail">
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
   <% photo.comments.each do |comment| %>
-    <b><%= comment.user.name %></b> says:
-    <%= comment.message %><br>
+  <div class="card-body">
+    <h5 class="card-title">    <b><%= comment.user.name %></b> says:</h5>
+    <p class="card-text">    <%= comment.message %><br></p>
   <% end %>
+  </div>
+</div>
+
+
+
 
   <%= form_for Comment.new do |f| %>
     <%= f.label :message %>
@@ -46,3 +73,4 @@
 
 <% end %>
 <%= link_to "Go Back", url_for(:back), class: 'btn btn-info' %>
+</div>

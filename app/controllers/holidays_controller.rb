@@ -22,8 +22,7 @@ class HolidaysController < ApplicationController
     redirect_to holiday
   end
 
-  def delete
-  end
+
 
   def create
     holiday = Holiday.create holiday_params
