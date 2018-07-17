@@ -1,9 +1,30 @@
 <%= form_for @holiday do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
+      <h1>Create a Holiday</h1>
+    </div>
+  </div>
+  <% if flash[:error] %>
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
+      <p class="alert alert-warning"><%= flash[:error] %></p>
+    </div>
+  </div>
+    <% end %>
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto">
   <%= f.label :title %>
   <%= f.text_field :title, :autofocus => true %>
-
   <!-- TODO Use current logged in user -->
   <%= f.hidden_field :user_id, :value => current_user.id %>
+</div>
+</div>
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto py-2">
+      <%= submit_tag "Create Holiday", class: "btn btn-success btn-block" %>
+    </div>
+  </div>
+</div>
 
-  <%= f.submit %>
 <% end %>

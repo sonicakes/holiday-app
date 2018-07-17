@@ -29,7 +29,7 @@
 <% end %>
 
 <% @holiday.photos.each do |photo| %>
-  <img src="<%= photo.image_url %>" alt="" class="img-fluid img-thumbnail">
+  <img src="<%= photo.image_url %>" alt="photo of the holiday" class="img-fluid img-thumbnail">
   <% photo.comments.each do |comment| %>
     <b><%= comment.user.name %></b> says:
     <%= comment.message %><br>
@@ -45,3 +45,4 @@
   <% end %>
 
 <% end %>
+<%= link_to "Go Back", url_for(:back), class: 'btn btn-info' %>

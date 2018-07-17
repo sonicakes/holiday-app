@@ -1,4 +1,4 @@
-<h2><%= current_user.id%></h2>
+<h1><%=  %></h1>
 <h2><%= current_user.email%></h2>
 <h2><%= current_user.name%></h2>
 
@@ -8,3 +8,4 @@
     <b><%= comment.user.name %></b> says:
     <%= comment.message %><br>
   <% end %>
+<%= link_to "Go Back", holiday_path, class: 'btn btn-info' %>

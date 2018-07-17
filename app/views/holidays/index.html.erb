@@ -14,7 +14,8 @@
           <p class="h4"><%= link_to holiday.title, holiday %></p>
           <p>
             Created by <i><%= holiday.user.name %></i>
-            at <i><%= holiday.created_at %></i>.
+            on <i><%= holiday.created_at.strftime("%Y-%m-%d") %></i>,
+            at <i><%= holiday.created_at.strftime("%I:%M%p") %></i>
           </p>
         </div>
       <% end %>
