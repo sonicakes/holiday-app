@@ -21,6 +21,7 @@
         <% end %>
       </div>
     </div>
+      <% if @holiday.user.id == @current_user.id %>
     <div class="row border mb-2">
       <div class="col-12 col-lg-6 mx-auto">
         <%= f.label :image_url %>
@@ -48,6 +49,7 @@
     </div>
   </div>
 <% end %>
+<% end %>
 
 <div class="container">
   <div class="row">
@@ -56,11 +58,16 @@
         <div class="card">
           <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
             <div class="card-body">
+                <% if @holiday.user.id == @current_user.id %>
               <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+                    <% end %>
+
               <% photo.comments.each do |comment| %>
                 <h5 class="card-title"><b><%= comment.user.name %></b> says:</h5>
                 <p class="card-text"><%= comment.message %></p>
+                  <% if @holiday.user.id == @current_user.id %>
                 <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
+                <% end %>
               <% end %>
               <%= form_for Comment.new do |f| %>
                 <%= f.label :message, "New Comment" %>
