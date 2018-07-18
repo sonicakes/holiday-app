@@ -20,6 +20,12 @@
         </div>
       <% end %>
 
+      <% if flash[:success] %>
+       <div class="alert-success alert">
+         <%= flash[:success]%>
+       </div>
+      <% end %>
+
     </div>
   </div>
 </div>

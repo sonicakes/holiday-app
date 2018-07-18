@@ -14,6 +14,11 @@ class HolidaysController < ApplicationController
 
   def edit
       @holiday = Holiday.find params[:id]
+      unless @current_user.holidays.include? @holiday
+        redirect_to root_path
+      else
+        render :edit
+      end
   end
 
   def update
@@ -25,12 +30,14 @@ class HolidaysController < ApplicationController
   def create
     holiday = Holiday.create holiday_params
     current_user.holidays << holiday
+    flash[:success] =  "Holiday Created!"
     redirect_to holiday # GET the show page
   end
 
   def destroy
     holiday = Holiday.find params[:id]
-    holiday.destroy
+    holiday.destroy if @current_user.holidays.include? holiday
+      flash[:success] =  "Holiday Deleted!"
     redirect_to holidays_path
   end
 
