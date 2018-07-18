@@ -11,11 +11,9 @@
           <% else %>
             No photos uploaded.
           <% end %>
+          <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE">
           <p class="h4"><%= link_to holiday.title, holiday %></p>
           <p class="h4"><%= holiday.location %></p>
-          <div style='width: 800px; border: 1px solid red'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
           <p>
             Created by <i><%= holiday.user.name %></i>
             on <i><%= holiday.created_at.strftime("%Y-%m-%d") %></i>,

@@ -22,33 +22,33 @@
       </div>
     </div>
       <% if @holiday.user.id == @current_user.id %>
-    <div class="row border mb-2">
-      <div class="col-12 col-lg-6 mx-auto">
-        <%= f.label :image_url %>
-        <%= f.url_field :image_url, :autofocus => true, class: "form-control" %>
+        <div class="row border mb-2">
+          <div class="col-12 col-lg-6 mx-auto">
+            <%= f.label :image_url %>
+            <%= f.url_field :image_url, :autofocus => true, class: "form-control" %>
+          </div>
+          <div class="col-12 col-lg-6">
+              <!-- This will be used to create the first comment on the photo -->
+              <!-- The "message" field does not exist in the Photo model, it -->
+              <!-- only exists in the Comment model. After we save the new -->
+              <!-- Photo in the PhotosController (create action) we then  -->
+              <!-- need to create a Comment, assign it the photo_id of the  -->
+              <!-- photo we just created and save it with the message below. -->
+              <label>Message</label>
+              <textarea class="form-control "name="message"></textarea>
+          </div>
+          <div class="col-12 py-2 mx-auto">
+            <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
+            <!-- creating a Photo, we have to specify which holiday it will  -->
+            <!-- belong to. Because we are already on the 'show' page for the -->
+            <!-- holiday, we know that the holiday_id should be the ID of the -->
+            <!-- holiday that we are currently looking at. -->
+            <%= f.hidden_field :holiday_id, :value => @holiday.id %>
+            <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
+          </div>
+        </div>
       </div>
-      <div class="col-12 col-lg-6">
-          <!-- This will be used to create the first comment on the photo -->
-          <!-- The "message" field does not exist in the Photo model, it -->
-          <!-- only exists in the Comment model. After we save the new -->
-          <!-- Photo in the PhotosController (create action) we then  -->
-          <!-- need to create a Comment, assign it the photo_id of the  -->
-          <!-- photo we just created and save it with the message below. -->
-          <label>Message</label>
-          <textarea class="form-control "name="message"></textarea>
-      </div>
-      <div class="col-12 py-2 mx-auto">
-        <!-- A Photo 'belongs to' a Holiday. So when we have a form for -->
-        <!-- creating a Photo, we have to specify which holiday it will  -->
-        <!-- belong to. Because we are already on the 'show' page for the -->
-        <!-- holiday, we know that the holiday_id should be the ID of the -->
-        <!-- holiday that we are currently looking at. -->
-        <%= f.hidden_field :holiday_id, :value => @holiday.id %>
-        <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
-      </div>
-    </div>
-  </div>
-<% end %>
+    <% end %>
 <% end %>
 
 <div class="container">
@@ -58,15 +58,17 @@
         <div class="card">
           <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
             <div class="card-body">
-                <% if @holiday.user.id == @current_user.id %>
-              <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
-                    <% end %>
+              <% if @holiday.user.id == @current_user.id %>
+                <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+              <% end %>
 
               <% photo.comments.each do |comment| %>
                 <h5 class="card-title"><b><%= comment.user.name %></b> says:</h5>
                 <p class="card-text"><%= comment.message %></p>
-                  <% if @holiday.user.id == @current_user.id %>
-                <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
+                <% if @holiday.user.id == @current_user.id %>
+                  <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
+                <% elsif comment.user.id == @current_user.id %>
+                  <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
                 <% end %>
               <% end %>
               <%= form_for Comment.new do |f| %>
