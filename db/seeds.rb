@@ -84,10 +84,10 @@ comment8 = Comment.create :message => "Yeah I've been there, it's great"
 photo4.comments << comment8
 user1.comments << comment8
 
-comment9 = Comment.create :user_id => 2, :photo_id => 6, :message => "Will we have time to get to France?"
+comment9 = Comment.create :message => "Will we have time to get to France?"
 photo6.comments << comment9
 user2.comments << comment9
 
-comment10 = Comment.create :user_id => 1, :photo_id => 6, :message => "Sure, we can catch a fast train"
+comment10 = Comment.create :message => "Sure, we can catch a fast train"
 photo6.comments << comment10
 user1.comments << comment10
