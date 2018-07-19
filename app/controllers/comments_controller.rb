@@ -1,13 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :authorize
-  def index
-  end
-def show
-    @comment = Comment.find params[:id]
-end
-  def new
-      @comment = Comment.new
-  end
+  before_action :authorize
 
   def create
 
@@ -21,21 +13,11 @@ end
     redirect_back :fallback_location => root_path # GET the show page
   end
 
-  def edit
-  end
-
-  def update
-    comment = Comment.find params[:id]
-    comment.update comment_params
-    redirect_to comment
-  end
-
-
   def destroy
     comment = Comment.find params[:id]
     holiday = comment.photo.holiday
     comment.destroy
-        flash[:success] =  "Comment Deleted!"
+    flash[:success] = "Comment Deleted!"
     redirect_to holiday
   end
 
