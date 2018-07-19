@@ -8,13 +8,6 @@
 
 <%= form_for @holiday do |f| %>
   <div class="container">
-    <% if flash[:error] %>
-      <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
-          <p class="alert alert-warning"><%= flash[:error] %></p>
-        </div>
-      </div>
-    <% end %>
     <div class="row">
       <div class="col-12 col-md-6 mx-auto text-white">
         <%= f.label :title %>
