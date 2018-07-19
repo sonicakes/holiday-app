@@ -35,6 +35,7 @@ end
     comment = Comment.find params[:id]
     holiday = comment.photo.holiday
     comment.destroy
+        flash[:success] =  "Comment Deleted!"
     redirect_to holiday
   end
 

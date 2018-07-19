@@ -44,6 +44,6 @@ class HolidaysController < ApplicationController
 # Strong params: create a whitelist of permitted parameters
 private
 def holiday_params
-  params.require(:holiday).permit(:title, :user_id)
+  params.require(:holiday).permit(:title, :user_id, :location)
 end
 end
