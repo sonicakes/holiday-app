@@ -1,11 +1,16 @@
-<h1><%=  %></h1>
-<h2><%= current_user.email%></h2>
-<h2><%= current_user.name%></h2>
-
-
-  <img src="<%= @photo.image_url %>" alt="">
-  <% @photo.comments.each do |comment| %>
-    <b><%= comment.user.name %></b> says:
-    <%= comment.message %><br>
-  <% end %>
-<%= link_to "Go Back", holidays_path, :method => :get, class: 'btn btn-info' %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <img class="img-fluid" src="<%= @photo.image_url %>" alt="<%= @photo.holiday.title %>">
+          <% @photo.comments.each do |comment| %>
+            <b><%= comment.user.name %></b> says:
+            <%= comment.message %><br>
+          <% end %>
+          <%= link_to "Back to #{@photo.holiday.title}", @photo.holiday, :method => :get, class: 'btn btn-info' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

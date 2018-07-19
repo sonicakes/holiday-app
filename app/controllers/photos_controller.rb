@@ -1,14 +1,8 @@
 class PhotosController < ApplicationController
-    before_action :authorize
-  def index
-  end
+  before_action :authorize
 
   def show
     @photo = Photo.find params[:id]
-  end
-
-  def new
-      @photo = Photo.new
   end
 
   def create
@@ -23,15 +17,6 @@ class PhotosController < ApplicationController
     comment.save
 
     redirect_to photo.holiday
-  end
-
-  def edit
-  end
-
-  def update
-    photo = Photo.find params[:id]
-    photo.update photo_params
-    redirect_to photo
   end
 
   def destroy
