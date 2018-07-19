@@ -7,7 +7,24 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mx-auto">
+        <%= link_to "Go Back", holidays_path, class: 'btn btn-sm btn-info' %>
+
         <h1 class="text-white display-3"><strong><%= @holiday.title %></strong></h1>
+
+              <ul class="nav justify-content-end mx-2">
+
+            <% if @holiday.user.id == @current_user.id %>
+          <li class="nav-item">
+            <%= link_to "Edit Holiday", edit_holiday_path(@holiday), class: "btn btn-sm btn-warning"  %>
+
+          </li>
+          <li class="nav-item">
+            <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+
+          </li>
+          <% end %>
+
+        </ul>
       </div>
     </div>
       <div class="row">
@@ -15,17 +32,11 @@
           Created by <i><%= @holiday.user.name %></i>
           on <i><%= @holiday.created_at.strftime("%Y-%m-%d") %></i>,
           at <i><%= @holiday.created_at.strftime("%I:%M%p") %></i>
+          <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE">
+
         </div>
       </div>
-    <div class="row">
-      <div class="col-12 p-2 mx-auto">
-        <%= link_to "Go Back", holidays_path, class: 'btn btn-info' %>
-        <% if @holiday.user.id == @current_user.id %>
-          <%= link_to "Edit Holiday", edit_holiday_path(@holiday), class: "btn btn-warning"  %>
-          <%= link_to "Delete Holiday", holiday_path(@holiday), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"  %>
-        <% end %>
-      </div>
-    </div>
+
 
       <% if @holiday.user.id == @current_user.id %>
         <div class="row border mb-2 bg-light rounded">
@@ -66,15 +77,13 @@
       <div class="col-12 col-md-6 mx-auto">
         <div class="card">
           <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
-          <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE">
-          <p class="h4"><%= @holiday.location %></p>
             <div class="card-body">
               <% if @holiday.user.id == @current_user.id %>
-                <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+                <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger float-right"  %>
               <% end %>
 
               <% photo.comments.each do |comment| %>
-                <h5 class="card-title"><b><%= comment.user.name %></b> says:</h5>
+                <h5 class="card-title"><strong><%= comment.user.name %> says:</strong></h5>
                 <p class="card-text"><%= comment.message %></p>
                 <% if @holiday.user.id == @current_user.id %>
                   <%= link_to "Delete Comment", comment_path(comment), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-warning"  %>
