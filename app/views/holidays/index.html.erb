@@ -6,26 +6,32 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>All Holidays</h1>
+      <h1 class="text-center text-white p-3 display-3" >All Holidays</h1>
     </div>
 
 
 
       <% @holidays.each do |holiday| %>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 pb-2">
+              <p class="bg-light p-2 m-0 h4"><%= link_to holiday.title, holiday %> (<span class="h5"><%= holiday.location %></span>)</p>
+
           <% if holiday.photos.first.present? %>
             <a href="<%= url_for holiday %>"><img src="<%= holiday.photos.first.image_url %>" class="img-thumbnail img-fluid" alt="<%=holiday.title %>"></a>
           <% else %>
-            No photos uploaded.
+          <p class="bg-light m-0">  No photos uploaded.</p>
           <% end %>
+
+
+
           <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE">
-          <p class="h4"><%= link_to holiday.title, holiday %></p>
-          <p class="h4"><%= holiday.location %></p>
-          <p>
+
+
+          <p class="bg-light p-2">
             Created by <i><%= holiday.user.name %></i>
             on <i><%= holiday.created_at.strftime("%Y-%m-%d") %></i>,
             at <i><%= holiday.created_at.strftime("%I:%M%p") %></i>
           </p>
+
         </div>
       <% end %>
 

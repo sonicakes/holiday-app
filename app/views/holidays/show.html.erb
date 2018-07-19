@@ -7,11 +7,11 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mx-auto">
-        <h1><%= @holiday.title %></h1>
+        <h1 class="text-white display-3"><strong><%= @holiday.title %></strong></h1>
       </div>
     </div>
       <div class="row">
-        <div class="col-12 mx-auto">
+        <div class="col-12 mx-auto text-white h4">
           Created by <i><%= @holiday.user.name %></i>
           on <i><%= @holiday.created_at.strftime("%Y-%m-%d") %></i>,
           at <i><%= @holiday.created_at.strftime("%I:%M%p") %></i>
@@ -26,8 +26,12 @@
         <% end %>
       </div>
     </div>
+
       <% if @holiday.user.id == @current_user.id %>
-        <div class="row border mb-2">
+        <div class="row border mb-2 bg-light rounded">
+
+
+
           <div class="col-12 col-lg-6 mx-auto">
             <%= f.label :image_url %>
             <%= f.url_field :image_url, :autofocus => true, class: "form-control" %>
@@ -49,7 +53,7 @@
             <!-- holiday, we know that the holiday_id should be the ID of the -->
             <!-- holiday that we are currently looking at. -->
             <%= f.hidden_field :holiday_id, :value => @holiday.id %>
-            <%= f.submit "Add Photo", class: "btn btn-info btn-block"%>
+            <%= f.submit "Add Photo", class: "btn btn-success btn-block"%>
           </div>
         </div>
       </div>
@@ -83,7 +87,7 @@
                 <%= f.text_field :message, :autofocus => true, class: "form-control" %>
                 <%= f.hidden_field :holiday_id, :value => @holiday.id %>
                 <%= f.hidden_field :photo_id, :value => photo.id %>
-                <button type="submit" class="my-2 btn btn-block btn-info">Add Comment</button>
+                <button type="submit" class="my-2 btn btn-block btn-success">Add Comment</button>
               <% end %>
             </div>
         </div>

@@ -1,3 +1,12 @@
 // Place all the styles related to the Holidays controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+body {
+  background-image: image-url('travel.jpg');
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+background-size: cover;
+font-family: 'Playfair Display', serif;
+}
