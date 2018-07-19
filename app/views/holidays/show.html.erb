@@ -1,8 +1,3 @@
-<% if flash[:success] %>
- <div class="alert-success alert">
-   <%= flash[:success]%>
- </div>
-<% end %>
 <%= form_for Photo.new do |f| %>
   <div class="container">
     <div class="row">
@@ -76,7 +71,7 @@
     <% @holiday.photos.each do |photo| %>
       <div class="col-12 col-md-6 mx-auto">
         <div class="card">
-          <img class="card-img-top" src="<%= photo.image_url %>" class="img-fluid img-thumbnail">
+          <a href="<%= url_for photo %>"><img class="card-img-top" src="<%= photo.image_url %>"></a>
             <div class="card-body">
               <% if @holiday.user.id == @current_user.id %>
                 <%= link_to "Delete Photo", photo_path(photo), :method => 'delete', :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger float-right"  %>

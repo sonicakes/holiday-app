@@ -5,13 +5,6 @@
         <h1 class="text-white">Log In</h1>
       </div>
     </div>
-      <% if flash[:error] %>
-      <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
-          <p class="alert alert-warning"><%= flash[:error] %></p>
-        </div>
-      </div>
-      <% end %>
     <div class="row">
       <div class="col-12 col-md-6 mx-auto text-white">
         <%= label_tag :email %>
@@ -26,9 +19,9 @@
     </div>
     <div class="row">
       <div class="col-12 col-md-6 mx-auto py-2">
-         <%= button_tag type: 'submit', class: "btn btn-primary btn-block", style: "background: #000066;" do %>
-                 <i class="fas fa-sign-in-alt"></i> Log In!
-             <% end %>
+        <%= button_tag type: 'submit', class: "btn btn-primary btn-block", style: "background: #000066;" do %>
+          <i class="fas fa-sign-in-alt"></i> Log In!
+        <% end %>
       </div>
     </div>
   </div>

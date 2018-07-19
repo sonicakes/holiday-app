@@ -11,11 +11,11 @@ class SessionController < ApplicationController
     if user.present? && user.authenticate(params[:password])
       # If a user record with the entered in the form is present AND the user is authenticated (using bcrypt's authenticate method and the password entered in the form), store their id in the session hash and redirect them to the root path.
       session[:user_id] = user.id
-      flash[:notice] = "User created!"
+      flash[:notice] = "Welcome back #{user.name}"
       redirect_to root_path
     else
       # If the user cannot be authenticated, redirect them to the login_path.
-      flash[:error] = "User could not be created!"
+      flash[:error] = "Sorry, you did not enter valid credentials"
       redirect_to login_path
     end
   end
@@ -23,6 +23,7 @@ class SessionController < ApplicationController
   # This is the action to which the user sign-out delete request is posted.
   def destroy
     session[:user_id] = nil
+    flash[:notice] = "You have logged out."
     redirect_to root_path
   end
 end

@@ -49,6 +49,28 @@
         </ul>
       </div>
     </nav>
+
+    <div class="container">
+      <div class="row my-2">
+        <div class="col-12 col-md-6 mx-auto">
+          <% if flash[:success] %>
+            <div class="alert-success alert">
+              <%= flash[:success]%>
+            </div>
+          <% end %>
+          <% if flash[:notice] %>
+            <div class="alert-info alert">
+              <%= flash[:notice]%>
+            </div>
+          <% end %>
+          <% if flash[:error] %>
+            <div class="alert-danger alert">
+              <%= flash[:error]%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <%= yield %>
     <div class="footer fixed-bottom mt-4 p-2 bg-dark text-white text-center">
       Copyright @sonicakes 2018

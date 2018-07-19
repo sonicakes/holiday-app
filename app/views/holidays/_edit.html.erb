@@ -1,34 +1,26 @@
 <%= form_for @holiday do |f| %>
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-6 mx-auto">
-      <h1 class="text-center text-white">Update a Holiday</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto">
+        <h1 class="text-center text-white">Update a Holiday</h1>
+      </div>
     </div>
-  </div>
-  <% if flash[:error] %>
-  <div class="row">
-    <div class="col-12 col-md-6 mx-auto">
-      <p class="alert alert-warning"><%= flash[:error] %></p>
-    </div>
-  </div>
-    <% end %>
     <div class="row">
       <div class="col-12 col-md-6 mx-auto text-white">
-<%= f.label :title %>
-<%= f.text_field :title, :autofocus => true %>
-</div>
-</div>
-<div class="row">
-  <div class="col-12 col-md-6 mx-auto text-white">
-<%= f.label :location %>
-<%= f.text_field :location%>
-</div>
-</div>
-<div class="row">
-  <div class="col-12 col-md-6 mx-auto py-2">
-    <%= submit_tag "Update", class: "btn btn-warning btn-block" %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :autofocus => true %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto text-white">
+        <%= f.label :location %>
+        <%= f.text_field :location %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto py-2">
+        <%= submit_tag "Update", class: "btn btn-warning btn-block" %>
+      </div>
+    </div>
   </div>
-</div>
-
-
 <% end %>
