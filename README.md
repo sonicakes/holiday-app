@@ -37,8 +37,10 @@ Idea for planning/storing ideas in a board format came from such software as Tre
 
 - Bootstrap 4.1.2 as Front End Framework
 - Rails 5.2.1 as Back End Handling
+- PostgreSQL as database
+- Heroku as deployment service
 - Google Maps API for delivering Maps
-- Bcrypt to handle authentication/authorization
+- Bcrypt GEM to handle authentication/authorization
 
 ## Project overview
 User can:
