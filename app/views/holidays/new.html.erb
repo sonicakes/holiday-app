@@ -21,6 +21,18 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-12 col-md-6 mx-auto text-white">
+        <%= f.label :latitude %>
+        <%= f.text_field :latitude, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto text-white">
+        <%= f.label :longitude %>
+        <%= f.text_field :longitude, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12 col-md-6 mx-auto py-2">
         <%= submit_tag "Create Holiday", class: "btn btn-success btn-block" %>
       </div>

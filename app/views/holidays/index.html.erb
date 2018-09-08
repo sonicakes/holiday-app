@@ -19,7 +19,10 @@
 
 
 
-          <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE">
+          <!-- <img class="img-fluid img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= holiday.location %>&zoom=6&size=600x300&maptype=roadmap&key=AIzaSyC1EK8UHAZEehu3sPvGKAinKLGF3TTNkIE"> -->
+          <div class="text-center">
+              <iframe width="350" height="300" src="https://maps.tilehosting.com/styles/basic/?key=SrArxJQiLFbJOqk6KVoH#10.17/<%= holiday.latitude %>/<%= holiday.longitude %>/0/60"></iframe>
+            </div>
 
 
           <p class="bg-light p-2">

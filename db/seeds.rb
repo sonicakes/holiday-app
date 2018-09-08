@@ -14,16 +14,16 @@ User.destroy_all
 user1 = User.create :email => "bob@example.com", :name => "Bob Smith", :password => "bob12345"
 user2 = User.create :email => "alice@example.com", :name => "Alice Green", :password => "alice12345"
 
-holiday1 = Holiday.create :title => "Japan", :location => "Tokyo, Japan"
+holiday1 = Holiday.create :title => "Japan", :location => "Tokyo, Japan", :longitude => "139.7321", :latitude => "35.7088"
 user1.holidays << holiday1
 
-holiday2 = Holiday.create :title => "Tasmania", :location => "Hobart, Tasmania, Australia"
+holiday2 = Holiday.create :title => "Tasmania", :location => "Hobart, Tasmania, Australia", :longitude => "147.3296", :latitude => "-42.8830"
 user1.holidays << holiday2
 
-holiday3 = Holiday.create :title => "Europe", :location => "Berlin, Germany"
+holiday3 = Holiday.create :title => "Europe", :location => "Berlin, Germany", :longitude => "13.3998", :latitude => "52.5187"
 user2.holidays << holiday3
 
-holiday4 = Holiday.create :title => "America", :location => "New York, USA" # Seeding a holiday with no photos or comments
+holiday4 = Holiday.create :title => "America", :location => "New York, USA", :longitude => "-73.8872", :latitude => "40.7099" # Seeding a holiday with no photos or comments
 user2.holidays << holiday4
 
 photo1 = Photo.create :image_url => "https://i2.wp.com/outoftownblog.com/wp-content/uploads/2018/03/Osaka-Castle.jpg?fit=1200%2C673&ssl=1" # Bob, Japan, Osaka Castle
